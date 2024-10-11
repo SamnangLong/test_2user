@@ -29,7 +29,8 @@ function ConnectToMQTT() {
 
 // Called when the client connects
 function onConnect() {
-    console.log("onConnect:" + client.clientId );
+    console.log("onConnect:");
+    document.getElementById('user_id').innerText = client.clientId;
     connection_status = true;
     const subTopic = 'control_led'; // Subscribe to the control topic
     client.subscribe(subTopic);
