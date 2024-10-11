@@ -29,7 +29,7 @@ function ConnectToMQTT() {
 
 // Called when the client connects
 function onConnect() {
-    console.log("onConnect");
+    console.log("onConnect:" + client.clientId );
     connection_status = true;
     const subTopic = 'control_led'; // Subscribe to the control topic
     client.subscribe(subTopic);
@@ -68,7 +68,7 @@ document.getElementById('btnOn').addEventListener('click', function() {
     if (connection_status) {
         const message = `lamp,ON,${client.clientId}`; // Prepare the message format
         publishToMQTT(message); // Publish message to MQTT
-        document.getElementById('status').innerText = 'Lamp is ON';
+        // document.getElementById('status').innerText = 'Lamp is ON';
     } else {
         alert("MQTT not connected");
     }
@@ -78,7 +78,7 @@ document.getElementById('btnOff').addEventListener('click', function() {
     if (connection_status) {
         const message = `lamp,OFF,${client.clientId}`; // Prepare the message format
         publishToMQTT(message); // Publish message to MQTT
-        document.getElementById('status').innerText = 'Lamp is OFF';
+        // document.getElementById('status').innerText = 'Lamp is OFF';
     } else {
         alert("MQTT not connected");
     }
